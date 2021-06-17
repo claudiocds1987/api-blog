@@ -4,7 +4,6 @@ const router = require('express').Router();
 // model sequelized from db.js file
 const { Post } = require('../../db');
 
-
 // GET ALL
 router.get('/', async (req, res) => {
     const posts = await Post.findAll({order: [['creationDate', 'DESC']]});
