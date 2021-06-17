@@ -9,6 +9,12 @@ router.get('/', async (req, res) => {
     const posts = await Post.findAll({order: [['creationDate', 'DESC']]});
     res.json(posts);
 });
+// GET ONE
+router.get('/:id', async (req, res) => {
+    const posts = await Post.findByPk(req.params.id);
+    res.json(posts);
+});
+
 // CREATE
 router.post('/', async (req, res) => {
     // res.send('Entra correctamente, funciona!');

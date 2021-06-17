@@ -14,7 +14,6 @@ const sequelize = new Sequelize("a63IZw2kCx", "a63IZw2kCx", "WlepKG1Mid", {
 // Model "Post" to interact with MySql db
 const Post = PostModel(sequelize, Sequelize);
 
-
 sequelize.sync({ force: false })
 .then(() => {
     console.log('Tablas sincronizadas')
