@@ -1,7 +1,5 @@
-// const Sequelize = require("sequelize");
-
 module.exports = (sequelize, type) => {
-    return sequelize.define('blog', {
+    return sequelize.define('post', {
         id:{
             type: type.INTEGER,
             primaryKey: true,
@@ -10,7 +8,6 @@ module.exports = (sequelize, type) => {
         title: type.STRING,
         content: type.STRING,
         image: type.STRING,
-        //id_category: type.INTEGER, // ???
         categoryId:{
             type: type.INTEGER,
             allowNull: false,

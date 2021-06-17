@@ -1,8 +1,7 @@
 const Sequelize = require("sequelize");
 
-// import models
-const CategoryModel = require("./models/categories");
-const BlogModel = require("./models/blogs"); // ?
+// import model
+const PostModel = require("./models/post");
 
 const sequelize = new Sequelize("a63IZw2kCx", "a63IZw2kCx", "WlepKG1Mid", {
   host: "remotemysql.com",
@@ -12,13 +11,8 @@ const sequelize = new Sequelize("a63IZw2kCx", "a63IZw2kCx", "WlepKG1Mid", {
   }
 });
 
-// Model Category to interact with MySql db
-//const Category = CategoryModel(sequelize, Sequelize);
-const Blog = BlogModel(sequelize, Sequelize);
-
-
-// Category.hasMany(Blog);
-// Blog.belongsTo(Category);
+// Model "Post" to interact with MySql db
+const Post = PostModel(sequelize, Sequelize);
 
 
 sequelize.sync({ force: false })
@@ -27,6 +21,5 @@ sequelize.sync({ force: false })
 })
 
 module.exports = {
-  //Category,
-  Blog,
+  Post,
 };

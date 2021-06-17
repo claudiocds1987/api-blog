@@ -1,10 +1,7 @@
 const router = require('express').Router();
 
-const apiBlogRouter = require('./api/blogs'); // ?
-const apiCategoryRouter = require('./api/categories');
+const apiBlogRouter = require('./api/post'); 
 
-router.use('/blog', apiBlogRouter); // ?
-//router.use('/category', apiCategoryRouter);
-
+router.use('/posts', apiBlogRouter); 
 
 module.exports = router;
