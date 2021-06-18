@@ -1,0 +1,14 @@
+h1 Subir Imagen
+div
+    form(action="http://localhost:3000/api/posts", method="POST", enctype="multipart/form-data")
+        label Title
+        input(type="text", name="title")
+        label Content
+        input(type="text", name="content")
+        label Category
+        input(type="text", name="categoryId")
+        label Creation Date
+        input(type="text", name="creationDate")
+        label Imagen
+        input(type="file", name="image")
+        input(type="submit", value="Enviar")
