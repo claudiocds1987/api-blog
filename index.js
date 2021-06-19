@@ -1,6 +1,6 @@
 const express = require('express');
 // para variables de entorno npm i dotenv
-require('dotenv').config(); //?
+require('dotenv').config();
 
 const path = require('path');
 // import routes
@@ -16,14 +16,11 @@ require('./db');
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended: false})) // estaba en true
-
-app.use(express.static(path.join(__dirname, 'public'))); //?
-
+// To save static files like images
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
-
-// ----------------------------------------------
 // Ruta view pug
-app.get('/uploadfile', (req, res) => {
+app.get('/form', (req, res) => {
     res.render('index');
 })
 

@@ -39,7 +39,6 @@ const storage = multer.diskStorage({
   }).single("image");
   
   router.route("/file").post(upload, (req, res, next) => {
-    // const file = (req).file;
     const file = req.body.image;
     console.log(file);
     if (!file) {
@@ -49,7 +48,6 @@ const storage = multer.diskStorage({
     var ruta = (req).file.path;
     console.log("ruta de imagen: " + ruta);
   });
-  
   // ******************* FIN UPLOAD DE IMAGE ******************* //
 
 // model sequelized from db.js file
@@ -72,9 +70,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", upload, async (req, res) => {
-    // fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
-    console.log('aca : ' + req.file.path);
-
+    
     const postObj = {
       title: req.body.title,
       content: req.body.content,
@@ -86,14 +82,6 @@ router.post("/", upload, async (req, res) => {
     const post = await Post.create(postObj);
     res.json(post);
 });
-
-
-// CREATE /api/posts
-// router.post("/", async (req, res) => {
-//   // res.send('Entra correctamente, funciona!');
-//   const post = await Post.create(req.body);
-//   res.json(post);
-// });
 
 // UPDATE WITH PATCH /api/posts/1
 router.patch("/:id", async (req, res) => {
@@ -128,13 +116,5 @@ router.delete("/:id", async (req, res) => {
       } 
   });
 });
-
-// UPDATE WITH PUT
-// router.put('/:id', async (req, res) => {
-//     await Post.update(req.body, {
-//         where: { id: req.params.id }
-//     });
-//     res.json({ succes: 'Post modificado exitosamente!' });
-// });
 
 module.exports = router;
