@@ -69,6 +69,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// CREATE /api/posts
 router.post("/", upload, async (req, res) => {
   const postObj = {
     title: req.body.title,
