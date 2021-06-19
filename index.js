@@ -24,10 +24,7 @@ app.get('/form', (req, res) => {
     res.render('index');
 })
 
-// -------------------------------------
-
-
-// iniciar con nodemon index.js
+// INICIAR CON nodemon index.js
 
 app.listen(3000, () => {
     console.log('Servidor funcionando');
