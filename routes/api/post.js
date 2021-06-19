@@ -78,14 +78,10 @@ router.post("/", upload, async (req, res) => {
     const postObj = {
       title: req.body.title,
       content: req.body.content,
-      //image: req.file.originalname,
       image: req.file.path,
       categoryId: req.body.categoryId,
       creationDate: req.body.creationDate,
     }
-
-    //console.log(req.body);
-    // console.log('objeto: ' + JSON.stringify(postObj));
 
     const post = await Post.create(postObj);
     res.json(post);

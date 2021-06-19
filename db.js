@@ -1,9 +1,10 @@
 const Sequelize = require("sequelize");
+require('dotenv').config();
 
 // import model
 const PostModel = require("./models/post");
 
-const sequelize = new Sequelize("a63IZw2kCx", "a63IZw2kCx", "WlepKG1Mid", {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: "remotemysql.com",
   dialect: "mysql",
   define: {
