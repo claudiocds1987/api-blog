@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// ******************* PARA HACER UPLOAD DE IMAGE ******************* //
+// ******************* UPLOAD DE IMAGE ******************* //
 const multer = require("multer");
 const path = require("path");
 const uuid = require("uuid");
