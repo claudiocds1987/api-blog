@@ -61,7 +61,6 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 });
 
 // GET ONE /api/posts/:id
@@ -71,14 +70,14 @@ router.get("/:id", async (req, res) => {
     if (posts === null) {
       res.status(404).json({
         ok: false,
-        msg: 'No existe el id'
+        msg: "No existe el id",
       });
     } else {
       res.json(posts);
     }
   } catch (error) {
     console.log(error);
-  } 
+  }
 });
 
 // CREATE /api/posts
@@ -97,12 +96,10 @@ router.post("/", upload, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 });
 
 // UPDATE WITH PATCH /api/posts/1
 router.patch("/:id", async (req, res) => {
-
   try {
     Post.update(
       {
@@ -116,7 +113,7 @@ router.patch("/:id", async (req, res) => {
       if (result[0] === 0) {
         res.status(404).json({
           ok: false,
-          msg: 'No existe el id'
+          msg: "No existe el id",
         });
       } else {
         res.json(result);
@@ -138,7 +135,7 @@ router.delete("/:id", async (req, res) => {
       if (result === 0) {
         res.status(404).json({
           ok: false,
-          msg: 'No existe el id'
+          msg: "No existe el id",
         });
       } else {
         res.json(result);
