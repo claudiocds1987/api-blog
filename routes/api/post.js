@@ -55,18 +55,30 @@ const { Post } = require("../../db");
 
 // GET ALL /api/posts
 router.get("/", async (req, res) => {
-  const posts = await Post.findAll({ order: [["creationDate", "DESC"]] });
-  res.json(posts);
+  try {
+    const posts = await Post.findAll({ order: [["creationDate", "DESC"]] });
+    res.json(posts);
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 // GET ONE /api/posts/:id
 router.get("/:id", async (req, res) => {
-  const posts = await Post.findByPk(req.params.id);
-  if (posts === null) {
-    res.json({ error: "El id no existe!" });
-  } else {
-    res.json(posts);
-  }
+  try {
+    const posts = await Post.findByPk(req.params.id);
+    if (posts === null) {
+      res.status(404).json({
+        ok: false,
+        msg: 'No existe el id'
+      });
+    } else {
+      res.json(posts);
+    }
+  } catch (error) {
+    console.log(error);
+  } 
 });
 
 // CREATE /api/posts
@@ -79,42 +91,62 @@ router.post("/", upload, async (req, res) => {
     creationDate: req.body.creationDate,
   };
 
-  const post = await Post.create(postObj);
-  res.json(post);
+  try {
+    const post = await Post.create(postObj);
+    res.json(post);
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 // UPDATE WITH PATCH /api/posts/1
 router.patch("/:id", async (req, res) => {
-  Post.update(
-    {
-      title: req.body.title,
-      content: req.body.content,
-    },
-    {
-      where: { id: req.params.id },
-    }
-  ).then((result) => {
-    if (result[0] === 0) {
-      res.json({ error: "El id no existe!" });
-    } else {
-      res.json(result);
-    }
-  });
+
+  try {
+    Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
+        where: { id: req.params.id },
+      }
+    ).then((result) => {
+      if (result[0] === 0) {
+        res.status(404).json({
+          ok: false,
+          msg: 'No existe el id'
+        });
+      } else {
+        res.json(result);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // DELETE /api/posts/1
 router.delete("/:id", async (req, res) => {
-  Post.destroy({
-    where: {
-      id: req.params.id,
-    },
-  }).then((result) => {
-    if (result === 0) {
-      res.json({ error: "El id no existe!" });
-    } else {
-      res.json(result);
-    }
-  });
+  try {
+    Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    }).then((result) => {
+      if (result === 0) {
+        res.status(404).json({
+          ok: false,
+          msg: 'No existe el id'
+        });
+      } else {
+        res.json(result);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
